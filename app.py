@@ -3,18 +3,19 @@ from flask import Flask, Response, request, jsonify
 from flask_cors import CORS, cross_origin
 import pymongo
 import json
+import sys
 
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
-app.config['CORS_HEADERS'] = 'application/json'
 
 try:
-    mongo = pymongo.MongoClient(host = "localhost", port= 27017)
+    mongo = pymongo.MongoClient('mongodb+srv://mani:Mani1@xharktank.b8ym6.mongodb.net/xharktank?retryWrites=true&w=majority')
     db = mongo["xharktank"]
     collection = db["mycollection"]
 
 except Exception as ex:
+    print("---",ex)
     print("DB NOT FOUND")
 
 
