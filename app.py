@@ -1,9 +1,11 @@
 from logging import exception
 from flask import Flask, Response, request, jsonify
+from flask_cors import CORS, cross_origin
 import pymongo
 import json
 
 app = Flask(__name__)
+CORS(app)
 
 try:
     mongo = pymongo.MongoClient(host = "localhost", port= 27017)
