@@ -5,7 +5,7 @@ import pymongo
 import json
 
 app = Flask(__name__)
-CORS(app)
+CORS(app, support_credentials=True)
 
 try:
     mongo = pymongo.MongoClient(host = "localhost", port= 27017)
@@ -77,6 +77,7 @@ def check_offer_post(content):
 
 
 @app.route("/pitches", methods = ["POST","GET"])
+@cross_origin(supports_credentials=True)
 def create_pitch():
     if request.method == "POST":
         #content = None
@@ -111,6 +112,7 @@ def create_pitch():
 
 
 @app.route("/pitches/<pitch_id>", methods = ["GET"])
+@cross_origin(supports_credentials=True)
 def get_pitch(pitch_id):
     
     ## Finding the given pitch_id and masking _id 
@@ -127,6 +129,7 @@ def get_pitch(pitch_id):
 
 
 @app.route("/pitches/<pitch_id>/makeOffer", methods = ["POST"])
+@cross_origin(supports_credentials=True)
 def make_offer(pitch_id):
 
     #content = None
