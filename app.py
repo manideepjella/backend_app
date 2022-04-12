@@ -7,6 +7,8 @@ import json
 app = Flask(__name__)
 CORS(app, support_credentials=True)
 
+app.config['CORS_HEADERS'] = 'application/json'
+
 try:
     mongo = pymongo.MongoClient(host = "localhost", port= 27017)
     db = mongo["xharktank"]
